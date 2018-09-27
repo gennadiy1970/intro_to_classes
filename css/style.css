@@ -1,0 +1,126 @@
+:root {
+  --color0: #dd1612;
+  --color1: #5e35b1;
+  --color2: #039be5;
+  --color3: #43a047;
+  --color4: #fdd835;
+  --color5: #ff8b06;
+  --colorHover: #0ee;
+  --pre: #0b1015;
+}
+
+body {
+  font-family: sans-serif;
+  font-size: 20px;
+}
+
+.wrapper {
+  width: 960px;
+  margin: auto;
+  box-shadow: 2px 2px 2px 2px hsla(0, 0%, 0%, 0.2);
+  padding: 1rem;
+  margin-bottom: 6rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.box {
+  width: 49%;
+  padding: 0.5rem;
+  outline: 1px solid hsla(0, 100%, 100%, 0.2);
+  box-shadow: 2px 2px 2px 2px hsla(0, 100%, 100%, 0.2);
+}
+
+.same {
+  color: var(--color3);
+}
+
+.diff {
+  color: var(--color2);
+}
+
+pre {
+  background: var(--pre);
+  padding: 1rem;
+  border-radius: 6px;
+  box-shadow: 2px 2px 2px 2px hsla(0, 0%, 0%, .2);
+}
+
+.cub-same,
+.cub-diff {
+  height: 20px;
+  display: block;
+}
+
+.cub-same {
+  background: var(--color3);
+}
+
+.cub-diff {
+  background: var(--color2);
+}
+
+.norm {
+  color: var(--color1);
+}
+
+.comment {
+  font-family: monospace;
+  color: gray;
+}
+
+.comment::before {
+    content: '/* '
+}
+
+.comment::after {
+    content: ' */'
+}
+.light {
+    color: orangered;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    padding: 1rem 6rem;
+    max-width: 960px;
+    margin: auto;
+}
+
+.nav a {
+    text-decoration: none;
+    color: #fff;
+    text-shadow:  2px 2px 2px hsla(0, 0%, 0%, .2);
+}
+.nav a:hover {
+    text-shadow:  1px 1px 1px hsla(0, 0%, 0%, .5);
+}
+
+.top-fixed {
+    position: fixed;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    background: #ff8b06;
+}
+
+#fc,
+#inheritaning,
+#static,
+#get_set {
+    padding-top: 60px;
+}

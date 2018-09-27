@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Class</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" integrity="sha256-oSrCnRYXvHG31SBifqP2PM1uje7SJUyX0nTwO2RJV54="
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <div class="top-fixed">
+        <ul class="nav">
+            <li><a href="#fc">FC vs Class</a></li>
+            <li><a href="#static">Static methods</a></li>
+            <li><a href="#inheritaning">Inheritaning of methods</a></li>
+        </ul>
+    </div>
+    <div class="wrapper">
+        <h2 id="fc">Function Constructor vs Class</h2>
+        <h3>синтаксис</h3>
+        <div class="container">
+            <!-- Fun  -->
+            <div class="box fun">
+                <h3>Функция - конструктор</h3>
+                <p><span class="cub-diff">&nbsp;</span></p>
+                <p> <span class="diff">этим цветом выделено</span> <span>различие</span> <span class="diff">в
+                        синтаксисе</span></p>
+                <pre><kbd>
+<span class="diff">function Human</span> <span class="same">(name = "Unknown") {
+    this.name = name;
+}</span>
+<span class="comment">function ~ class &amp; constructor</span>
+
+                </kbd></pre>
+                <h3>Методы</h3>
+                <pre><kbd>
+<span class="norm">function Human</span> <span class="norm">(name = "Unknown") {
+    this.name = name;
+}</span>
+<span class="diff">Human.prototype.hello = function () {</span>
+    <span class="norm">return `Hello ${this.name}!`</span>
+<span class="diff">}</span>
+<span class="comment">Human.prototype.hello ~ hello</span>
+
+                </kbd></pre>
+
+
+
+                <h3>Наследование</h3>
+                <pre><kbd>
+<span class="norm">function Human</span> <span class="norm">(name = "Unknown") {
+    this.name = name;
+}</span>
+<span class="norm">function Student</span> <span class="same">(name, group = "FE") {</span>
+        <span class="diff">Human.apply(this,arguments);</span>
+        <span class="same">this.group = group;</span>
+<span class="norm">}</span>
+<span class="diff">Student.prototype = new Human(); </span>
+
+<span class="comment">super ~ apply</span>
+<span class="comment">extends ~ prototype</span>
+                </kbd></pre>
+
+            </div>
+            <div class="box cls">
+                <h3>Class</h3>
+                <p class="cub-same"></p>
+                <p> <span class="same">этим цветом выделено</span> сходство <span class="same">в синтаксисе</span></p>
+                <pre><kbd>
+<span class="diff">class Human {
+    constructor</span><span class="same">(name = "Unknown") {
+        this.name = name;
+    }</span>
+<span class="diff">}</span>
+                </kbd></pre>
+                <h3>Methods</h3>
+                <pre><kbd>
+<span class="norm">class Human {
+    constructor</span><span class="norm">(name = "Unknown") {
+        this.name = name;
+    }</span>
+    <span class="diff">hello () {</span>
+        <span class="norm">return `Hello ${this.name}!`</span>
+    <span class="diff">}</span>
+<span class="norm">}</span>
+                </kbd></pre>
+
+
+
+                <h3>Inheriting</h3>
+                <pre><kbd>
+<span class="norm">class Human {
+    constructor</span><span class="norm">(name = "Unknown") {
+        this.name = name;
+    }</span>
+<span class="norm">}</span>
+<span class="norm">class Student</span> <span class="diff">extends Human</span> {
+    <span class="diff">constructor</span><span class="same">(name, group = 'FE') {</span>
+            <span class="diff">super(name)</span>
+            <span class="same">this.group = group;</span>
+    <span class="norm">}</span>
+<span class="norm">}</span>
+                </kbd></pre>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper">
+        <h3 id="inheritaning">Наследование методов / Inheritaning of methods</h3>
+        <!-- Синтаксис -->
+        <p>Синтаксис наследования <b>extends</b> и <b>super</b></p>
+        <pre><code class="light">
+   class Family {
+      constructor (name, birthday){
+         this.name = name;
+         this.birthday = birthday;
+         this.age = 0;
+      }
+         setAge () {
+            this.age = (new Date()).getFullYear()
+               - this.birthday.getFullYear();
+            return this;
+         }
+
+         getAge () {
+            return this.age;
+         }
+   }
+   const homer = new Family('Homer', new Date(1981, 1, 10));
+   homer.setAge().getAge()
+   <span class="comment">37</span>
+   class Child extends Family {
+      constructor (name, birthday) {
+         super(name, birthday);
+      }
+   }
+   const bart = new Child('Bart', new Date(2008, 3, 1));
+   bart.setAge().getAge()
+    <span class="comment">10</span>
+    </code></pre>
+        <h3 id="static">Cтатические методы / Static methods</h3>
+        <p>Cтатические методы вызываются через имя <b>класса</b>, например Method.random()</p>
+        <p>Обращение к статическим методам через объект приводит к ошибке <i>is not a function</i></p>
+        <!-- Синтаксис -->
+        <p>Синтаксис <b>static</b></p>
+        <pre><code class="light">
+class MyMath {
+    static one () {
+        return 1;
+    }
+}
+MyMath.one()
+<span class="comment">1</span>
+        </code></pre>
+        <!-- вызов из другого статического метода -->
+        <p>Вызов из другого статического метода <b>this</b></p>
+        <pre><code class="light">
+class MyMath {
+    static one () {
+        return 1;
+    }
+    static ten () {
+        return this.one() * 10;
+    }
+}
+MyMath.one()
+MyMath.ten()
+<span class="comment">1</span>
+<span class="comment">10</span>
+        </code></pre>
+        <!-- вызов из другого нестатического метода -->
+        <p>Вызов из метода (нестатического) <b>this.constructor</b></p>
+        <pre><code class="light">
+class MyMath {
+    static one () {
+        return 1;
+    }
+    ten () {
+        return this.constructor.one() * 10;
+    }
+}
+const obj = new MyMath()
+obj.ten()
+<span class="comment">10</span>
+        </code></pre>
+        <!--  наследование -->
+        <p>Переопределене при наследовании <b>super</b></p>
+        <pre><code class="light">
+class AlterMath extends MyMath {
+    static one () { return super.one() * 100; }
+}
+
+AlterMath.one()
+<span class="comment">100</span>
+        </code></pre>
+        <!--  -->
+        <h3>Требуется запомнить</h3>
+        <ul>
+            <li>Классы не поднимаются ( в отличие от функций - конструкторов)</li>
+            <li>Метод <b>constructor</b> в классе должен быть только один</li>
+            <li>Метод <b>super</b> должен быть объявлен в <b>constructor</b> до первого использования <b>this</b> </li>
+        </ul>
+    </div>
+    <script src="./js/app.js"></script>
+</body>
+
+</html>
